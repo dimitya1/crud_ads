@@ -12,7 +12,29 @@
 </head>
 <body>
 
-@yield('content')
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <a href="{{ route('home') }}" class="btn btn-light">
+                <img src="/assets/img/001-home-run.svg" alt="" width="32" height="32" title="Home"> Take me home</a>
+            <br>
+            <br>
+            @yield('content')
+        </div>
+
+        <div class="col-4">
+            @guest
+                @include('login-form')
+            @endguest
+
+            @auth
+                <p>Hi, {{ auth()->user()->name }}</p>
+                <p><a href="{{ route('ad.create') }}" class="btn btn-success">Create ad</a></p>
+                <p><a href="{{ route('logout') }}" class="btn btn-primary">Logout</a></p>
+            @endauth
+        </div>
+    </div>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
